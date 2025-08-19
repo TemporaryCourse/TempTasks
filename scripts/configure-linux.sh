@@ -9,6 +9,7 @@ install_prefix=/usr/local
 
 sudo apt update
 sudo apt install -yq graphicsmagick-libmagick-dev-compat # we need Magick++.h so that CImg.h can load jpg files
+sudo apt install -yq build-essential pkg-config libx11-dev libxrandr-dev # to fix #include <X11/extensions/Xrandr.h> when compiling Vulkan-Loader
 
 googletest_version=1.10.0
 vulkan_sdk_version=1.3.283
