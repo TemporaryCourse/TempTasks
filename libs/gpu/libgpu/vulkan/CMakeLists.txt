@@ -80,14 +80,14 @@ function (compile_vulkan_spir outfiles program defines)
 		COMMAND ${CMAKE_COMMAND} -E remove ${VK_HEADER}
 
 		COMMAND ${CMAKE_COMMAND} -E echo \#include<libgpu/vulkan/engine.h> > ${VK_HEADER}
-		COMMAND ${CMAKE_COMMAND} -E echo namespace avk2 { >> ${VK_HEADER}
+		COMMAND ${CMAKE_COMMAND} -E echo namespace avk2 { > ${VK_HEADER}
 
 		# and convert SPIR-V assembly binary file into C-array in header
 		COMMAND hexdumparray ${SPIR_BINARY} ${VK_HEADER} vulkan_${VARIABLE_SUFFIX}
 
-		COMMAND ${CMAKE_COMMAND} -E echo static const avk2::VersionedBinary vulkan_binary_${VARIABLE_SUFFIX}\(vulkan_${VARIABLE_SUFFIX}, sizeof\(vulkan_${VARIABLE_SUFFIX}\)\)\; >> ${VK_HEADER}
+		COMMAND ${CMAKE_COMMAND} -E echo static const avk2::VersionedBinary vulkan_binary_${VARIABLE_SUFFIX}\(vulkan_${VARIABLE_SUFFIX}, sizeof\(vulkan_${VARIABLE_SUFFIX}\)\)\; > ${VK_HEADER}
 
-		COMMAND ${CMAKE_COMMAND} -E echo } >> ${VK_HEADER}
+		COMMAND ${CMAKE_COMMAND} -E echo } > ${VK_HEADER}
 		VERBATIM
 	)
 
