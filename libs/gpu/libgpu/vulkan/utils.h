@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <optional>
+#include <cstdint>
 
 #ifdef _MSC_VER
 int setenv(const char *name, const char *value, int overwrite);
