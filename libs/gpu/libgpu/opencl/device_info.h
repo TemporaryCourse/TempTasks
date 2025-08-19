@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <string>
 #include <set>
+#include <cstdint>
 
 typedef struct _cl_platform_id *    cl_platform_id;
 typedef struct _cl_device_id *      cl_device_id;
