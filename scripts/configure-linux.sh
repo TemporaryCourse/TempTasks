@@ -86,26 +86,26 @@ cd ../..
 rm v2020.2.zip
 rm -rf shaderc-2020.2
 
-echo "Installing Vulkan Validation Layers"
-unzip Vulkan-ValidationLayers-${vulkan_validation_layers_version}.zip
-cd Vulkan-ValidationLayers-${vulkan_validation_layers_version}
-mkdir releasebuild -p
-cd releasebuild
-#   If you encounter something like:
-# Cloning into '.'...
-# error: RPC failed; curl 92 HTTP/2 stream 0 was not closed cleanly: CANCEL (err 8)
-# error: 1321 bytes of body are still expected
-# fetch-pack: unexpected disconnect while reading sideband packet
-# fatal: early EOF
-# fatal: fetch-pack: invalid index-pack output
-#   Run this:
-# git config --global http.postBuffer 524288000
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${install_prefix} -DUPDATE_DEPS=ON -DBUILD_WERROR=ON -DBUILD_TESTS=OFF ..
-make -j$njobs install
-cp ${install_prefix}/lib/libVkLayer_khronos_validation.so /usr/lib/
-cd ../..
-rm Vulkan-ValidationLayers-${vulkan_validation_layers_version}.zip
-rm -rf Vulkan-ValidationLayers-${vulkan_validation_layers_version}
+#echo "Installing Vulkan Validation Layers"
+#unzip Vulkan-ValidationLayers-${vulkan_validation_layers_version}.zip
+#cd Vulkan-ValidationLayers-${vulkan_validation_layers_version}
+#mkdir releasebuild -p
+#cd releasebuild
+##   If you encounter something like:
+## Cloning into '.'...
+## error: RPC failed; curl 92 HTTP/2 stream 0 was not closed cleanly: CANCEL (err 8)
+## error: 1321 bytes of body are still expected
+## fetch-pack: unexpected disconnect while reading sideband packet
+## fatal: early EOF
+## fatal: fetch-pack: invalid index-pack output
+##   Run this:
+## git config --global http.postBuffer 524288000
+#cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${install_prefix} -DUPDATE_DEPS=ON -DBUILD_WERROR=ON -DBUILD_TESTS=OFF ..
+#make -j$njobs install
+#cp ${install_prefix}/lib/libVkLayer_khronos_validation.so /usr/lib/
+#cd ../..
+#rm Vulkan-ValidationLayers-${vulkan_validation_layers_version}.zip
+#rm -rf Vulkan-ValidationLayers-${vulkan_validation_layers_version}
 
 echo "Installing Vulkan SPIRV Reflect"
 unzip SPIRV-Reflect-${vulkan_spirv_reflect_version}.zip
