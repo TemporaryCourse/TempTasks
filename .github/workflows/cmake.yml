@@ -22,6 +22,9 @@ jobs:
     - name: Install OpenCL driver for CPU
       run: sudo bash .github/scripts/install_intel_opencl.sh;
 
+    - name: Show clinfo full output
+      run: clinfo
+
 #    - name: Install CUDA SDK
 #      run: sudo bash .github/scripts/install_cuda.sh;
 
