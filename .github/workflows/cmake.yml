@@ -25,6 +25,12 @@ jobs:
     - name: Show clinfo full output
       run: clinfo
 
+    - name: Instal Vulkan software CPU driver
+      run: sudo bash .github/scripts/install_software_vulkan_cpu_driver.sh;
+
+    - name: Show vulkaninfo full output
+      run: vulkaninfo
+
 #    - name: Install CUDA SDK
 #      run: sudo bash .github/scripts/install_cuda.sh;
 
