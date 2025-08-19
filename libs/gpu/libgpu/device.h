@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <limits>
+#include <cstdint>
 
 typedef struct _cl_device_id *		cl_device_id;
 
