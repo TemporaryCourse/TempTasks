@@ -42,3 +42,18 @@ jobs:
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Run 100_main_aplusb
+      working-directory: ${{github.workspace}}/build
+      run: |
+        BIN=./100_main_aplusb
+        if [ -f "./${{env.BUILD_TYPE}}/100_main_aplusb" ]; then
+          BIN="./${{env.BUILD_TYPE}}/100_main_aplusb"
+        fi
+
+        # Optional: print deps for debugging
+        file "$BIN" || true
+        ldd "$BIN" || true
+
+        # Run
+        "$BIN"
