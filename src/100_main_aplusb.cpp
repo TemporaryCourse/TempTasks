@@ -8,6 +8,10 @@
 #include "vk/kernels.h"
 #include "vk/defines.h"
 
+#include <nlohmann/json.hpp>
+
+#include <fstream>
+
 
 int main(int argc, char **argv)
 {
@@ -63,6 +67,16 @@ int main(int argc, char **argv)
 	// Сверяем результат
 	for (size_t i = 0; i < n; ++i) {
 		rassert(cs[i] == as[i] + bs[i], 321418230421312);
+	}
+
+	// Сохраняем время работы кернела в output.json
+	{
+		using nlohmann::json;
+		json j;
+		j["timings"]["a+b"] = stats::median(times);
+		std::ofstream out("output.json");
+		rassert(out, 3254235223411);
+		out << j.dump(2) << std::endl;  // pretty-print with 2-space indent
 	}
 
 	return 0;

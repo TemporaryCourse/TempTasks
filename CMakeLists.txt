@@ -45,6 +45,7 @@ set(LIBRARIES
         libclew
         libgpu
         libutils
+        libjson
 )
 
 # compile_vulkan CMake-функция объявлена в libs/gpu/libgpu/vulkan/CMakeLists.txt:97
