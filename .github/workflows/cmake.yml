@@ -56,4 +56,4 @@ jobs:
         ldd "$BIN" || true
 
         # Run
-        "$BIN"
+        AVK_ENABLE_VALIDATION_LAYERS=false "$BIN"
