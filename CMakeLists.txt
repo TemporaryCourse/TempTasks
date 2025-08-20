@@ -64,12 +64,15 @@ compile_vulkan(HEADERS src/vk/121_render_gnome.vert                 VULKAN_DEFIN
 compile_vulkan(HEADERS src/vk/122_render_gnome.frag                 VULKAN_DEFINES)
 compile_vulkan(HEADERS src/vk/130_fildelity_fx_cas_sharpening.comp  VULKAN_DEFINES)
 
-add_executable       (100_main_aplusb                       src/100_main_aplusb.cpp                     ${SOURCES} ${HEADERS})
-add_executable       (110_main_render_triangle              src/110_main_render_triangle.cpp            ${SOURCES} ${HEADERS})
-add_executable       (120_main_render_gnome                 src/120_main_render_gnome.cpp               ${SOURCES} ${HEADERS})
-add_executable       (130_main_fidelity_fx_sharpening       src/130_main_fidelity_fx_sharpening.cpp     ${SOURCES} ${HEADERS})
+add_library          (${PROJECT_NAME}_core STATIC ${SOURCES} ${HEADERS})
+target_link_libraries(${PROJECT_NAME}_core                  ${LIBRARIES})
 
-target_link_libraries(100_main_aplusb                       ${LIBRARIES})
-target_link_libraries(110_main_render_triangle              ${LIBRARIES})
-target_link_libraries(120_main_render_gnome                 ${LIBRARIES})
-target_link_libraries(130_main_fidelity_fx_sharpening       ${LIBRARIES})
+add_executable       (100_main_aplusb                       src/100_main_aplusb.cpp)
+add_executable       (110_main_render_triangle              src/110_main_render_triangle.cpp)
+add_executable       (120_main_render_gnome                 src/120_main_render_gnome.cpp)
+add_executable       (130_main_fidelity_fx_sharpening       src/130_main_fidelity_fx_sharpening.cpp)
+
+target_link_libraries(100_main_aplusb                       ${PROJECT_NAME}_core)
+target_link_libraries(110_main_render_triangle              ${PROJECT_NAME}_core)
+target_link_libraries(120_main_render_gnome                 ${PROJECT_NAME}_core)
+target_link_libraries(130_main_fidelity_fx_sharpening       ${PROJECT_NAME}_core)
