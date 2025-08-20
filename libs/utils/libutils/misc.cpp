@@ -1,5 +1,8 @@
 #include "misc.h"
 
+#include <libgpu/vulkan/device.h>
+#include <libgpu/vulkan/vulkan_api_headers.h>
+
 #ifdef CUDA_SUPPORT
 #include <cuda_runtime_api.h>
 #endif
@@ -13,7 +16,7 @@ void gpu::printDeviceInfo(gpu::Device &device)
 		std::cout << "GPU. " << device.name << " (CUDA " << driverVersion << ").";
 	} else
 #endif
-	{
+	if (device.supports_opencl) {
 		ocl::DeviceInfo info;
 		info.init(device.device_id_opencl);
 		if (info.device_type == CL_DEVICE_TYPE_GPU) {
@@ -28,6 +31,27 @@ void gpu::printDeviceInfo(gpu::Device &device)
 		if (info.device_type == CL_DEVICE_TYPE_CPU) {
 			std::cout << " " << info.vendor_name << ".";
 		}
+	} else if (device.supports_vulkan) {
+		avk2::Device info(device.device_id_vulkan);
+		info.init(true);
+		if ((vk::PhysicalDeviceType) info.device_type == vk::PhysicalDeviceType::eDiscreteGpu) {
+			std::cout << "GPU.";
+		} else if ((vk::PhysicalDeviceType) info.device_type == vk::PhysicalDeviceType::eIntegratedGpu){
+			std::cout << "iGPU.";
+		} else if ((vk::PhysicalDeviceType) info.device_type == vk::PhysicalDeviceType::eVirtualGpu) {
+			std::cout << "vGPU.";
+		} else if ((vk::PhysicalDeviceType) info.device_type == vk::PhysicalDeviceType::eCpu) {
+			std::cout << "CPU.";
+		} else {
+			throw std::runtime_error(
+					"Only CPU and GPU supported! But type=" + to_string(info.device_type) + " encountered!");
+		}
+		std::cout << " " << info.name << ".";
+		if (info.device_type == CL_DEVICE_TYPE_CPU) {
+			std::cout << " " << info.vendor_name << ".";
+		}
+	} else {
+		rassert(false, 4356234512341, device.name);
 	}
 
 	if (device.supportsFreeMemoryQuery()) {
