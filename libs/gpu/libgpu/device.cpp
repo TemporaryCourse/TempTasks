@@ -358,9 +358,6 @@ std::vector<Device>	selectAllDevices(unsigned int mask, bool cuda_silent, bool o
 
 	std::vector<Device> devices = enumDevices(cuda_silent, opencl_silent, vk_silent);
 
-	if (mask == std::numeric_limits<unsigned int>::max())
-		mask = defaultMask(devices);
-
 	std::vector<Device> res;
 	for (size_t k = 0; k < devices.size(); k++) {
 		if (!(mask & (1 << k)))
