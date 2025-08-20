@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 	//  sudo cp /usr/local/lib/libVkLayer_khronos_validation.so /usr/lib/
 	gpu::Context context = activateVKContext(device);
 
-	unsigned int n = 100 * 1000 * 1000;
+	unsigned int n = 1000 * 1000;
 	std::vector<unsigned int> as(n, 0);
 	std::vector<unsigned int> bs(n, 0);
 	for (size_t i = 0; i < n; ++i) {
