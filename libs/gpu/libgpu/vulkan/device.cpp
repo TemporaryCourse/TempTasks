@@ -12,7 +12,7 @@
 #include <iostream>
 #include <vector>
 
-#define VK_CPU_DEVICES_ENABLED false
+#define VK_CPU_DEVICES_ENABLED true
 
 avk2::Device::Device(size_t device_id_vulkan)
 : device_id_vulkan(device_id_vulkan)
