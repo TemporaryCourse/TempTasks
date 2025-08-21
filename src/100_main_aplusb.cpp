@@ -5,8 +5,8 @@
 #include <libgpu/vulkan/engine.h>
 #include <libbase/timer.h>
 
-#include "vk/kernels.h"
 
+#include "vk/kernels.h"
 
 #include "vk/defines.h"
 #include <nlohmann/json.hpp>
