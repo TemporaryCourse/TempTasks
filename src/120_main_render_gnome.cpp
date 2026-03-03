@@ -5,10 +5,10 @@
 #include <libgpu/vulkan/engine.h>
 #include <libbase/timer.h>
 
-#include "libimages/debug_io.h"
 #include "vk/kernels.h"
 #include "vk/defines.h"
 
+#include "libimages/debug_io.h"
 #include "utils/read_ply_with_uv.h"
 
 
